@@ -19,8 +19,6 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
 
 
-
-    private ImageView ballIV;
     private TextView answerTV;
 
     //strings to push on click
@@ -40,9 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
 
-
-
-        ballIV = findViewById(R.id.btn);
+        ImageView ballIV = findViewById(R.id.btn);
         answerTV = findViewById(R.id.answer);
 
         ballIV.setOnTouchListener(this);
@@ -81,8 +77,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
 
-                answerTV.setText("hold on....");
-
                 int rand = new Random().nextInt(answersArray.length);
 
                 answerTV.setText(answersArray[rand]);
@@ -96,7 +90,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     //deprecated in API 26
                     v.vibrate(50);
                 }
+            case MotionEvent.ACTION_UP:
+                view.performClick();
+                break;
 
+            default:
                 break;
 
         }
