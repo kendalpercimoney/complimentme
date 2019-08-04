@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.Vibrator;
@@ -25,10 +27,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             "you're most incredible when you're not afraid to be yourself :)", "you're a candle in the darkness :)", "you're really something special :)",
             "you're more fun than a ball pit filled with candy :)"};
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //set window to full screen (under status bar - can't get it to work on the navigation bar)
+        Window w = getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
 
 
 
@@ -59,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //deprecated in API 26
                     v.vibrate(50);
                 }
-                //v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
 
                 break;
 
