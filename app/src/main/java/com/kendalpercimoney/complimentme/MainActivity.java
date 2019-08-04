@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     //strings to push on click
     private String[] answersArray = {"your perspective is refreshing. :)", "you’re more helpful than you realize. :)", " you’re even more beautiful on the inside than you are on the outside. :)",
             "you're most incredible when you're not afraid to be yourself :)", "you're a candle in the darkness :)", "you're really something special :)",
-            "you're more fun than a ball pit filled with candy :)"};
+            "you're more fun than a ball pit filled with candy :)", "your character is amazing. :)", "you're a gift to those around you", "your smile is contagious :)",
+            "you're a brilliant listener :)", "you look pretty good ;)", "you have a really good taste in apps :)"};
 
 
 
