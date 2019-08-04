@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,7 +16,7 @@ import android.os.Vibrator;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
 
 
 
@@ -44,11 +45,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ballIV = findViewById(R.id.btn);
         answerTV = findViewById(R.id.answer);
 
-        ballIV.setOnClickListener(this);
+        ballIV.setOnTouchListener(this);
     }
 
 
-    @Override
+ /*   @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn:
@@ -73,5 +74,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+    }*/
+
+    @Override
+    public boolean onTouch(View view, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+
+                answerTV.setText("hold on....");
+
+                int rand = new Random().nextInt(answersArray.length);
+
+                answerTV.setText(answersArray[rand]);
+
+                //vibrate on touch
+                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    v.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
+                } else {
+                    //deprecated in API 26
+                    v.vibrate(50);
+                }
+
+                break;
+
+        }
+
+        return true;
     }
 }
